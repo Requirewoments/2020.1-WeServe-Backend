@@ -1,6 +1,8 @@
 const requireDir = require('require-dir');
 const {getClient} = require('./../utils/getClient');
+const bcrypt = require('bcryptjs');
 const mongoose = require('mongoose');
+const { response } = require('express');
 requireDir('./../models');
 const User = mongoose.model('User');
 let client, db;
@@ -50,6 +52,19 @@ module.exports = {
     async delete(request, response){
         const user = await User.findByIdAndDelete(request.params.id);
         return response.json('User deleted!');
-    }
+    },
 
+    async authenticate(request, response){
+        const { email, password } = request.body;
+
+        const user = await User.findOne({ email });
+
+        if (!user)
+            return response.status(400).send({ error: 'Invalid email'});
+        
+        if (!await bcrypt.compare(password, user.password))
+            return response.status(400).send({ error: 'Invalid password' });
+
+        response.send({ user });
+    }
 }
