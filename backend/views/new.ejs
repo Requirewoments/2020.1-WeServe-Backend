@@ -1,0 +1,15 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <title><%= title %></title>
+    <link rel='stylesheet' href='/stylesheets/style.css' />
+  </head>
+  <body>
+    <h1><%= title %></h1>
+    <form action="<%= action %>" method="POST">
+        <p>Nome:<input type="text" name="nome" value="<%= doc.nome %>" /></p>
+        <p>Servico:<input type="text" name="servico" value="<%= doc.servico %>" /></p>
+        <input type="submit" value="Salvar" />
+      </form>
+  </body>
+</html>
