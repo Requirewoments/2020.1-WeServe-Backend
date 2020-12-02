@@ -1,11 +1,14 @@
 const requireDir = require('require-dir');
 const {getClient} = require('./../utils/getClient');
 const bcrypt = require('bcryptjs');
+const jwt = require('jsonwebtoken');
 const mongoose = require('mongoose');
 const { response } = require('express');
 requireDir('./../models');
 const User = mongoose.model('User');
 let client, db;
+
+const authConfig = require('../config/auth.json');
 
 getClient().then(onfulfilled => { 
     client = onfulfilled;
@@ -65,6 +68,10 @@ module.exports = {
         if (!await bcrypt.compare(password, user.password))
             return response.status(400).send({ error: 'Invalid password' });
 
-        response.send({ user });
+        user.password = undefined;
+
+        const token = jwt.sign({ id : user.id }, authConfig.secret);
+
+        response.send({ user, token });
     }
 }
