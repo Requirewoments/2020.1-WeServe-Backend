@@ -13,6 +13,10 @@ const WorkNeedSchema = new mongoose.Schema({
         type: String,
         ref: 'User'
     },
+    contacts: {
+        type: [String],
+        required: [true, 'É obrigatório adicionar ao menos um contato']
+    },
     createdAt: {
         type: Date,
         default: Date.now,
