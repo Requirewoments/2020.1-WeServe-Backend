@@ -3,7 +3,7 @@ const cors = require('cors');
 const mongoose = require('mongoose');
 const bodyParser = require('body-parser');
 const {MongoClient} = require('mongodb');
-const routes = require('./routes');
+const usersRoutes = require('./routes/users');
 
 const app = express();
 
@@ -12,7 +12,7 @@ app.use(bodyParser.urlencoded({extended: false}));
 
 app.use(express.json());
 app.use(cors());
-app.use(routes);
+app.use(usersRoutes);
 
 const main = async () => {
     const uri = 'mongodb%2Bsrv%3A%2F%2Fmaiconmares%3Aqnpjeposf4580%40cluster0.pr5dc.mongodb.net%2FWeServe%3FretryWrites%3Dtrue%26w%3Dmajority';
