@@ -1,13 +1,22 @@
 const mongoose = require('mongoose');
 
 const ServiceSchema = new mongoose.Schema({
-    name: {
+    
+    title: {
         type: String,
-        required: [true, 'Name required!'],
+        required: [true, 'Title required!'],
     },
-    service: {
+    author: {
         type: String,
-        required: [true, 'Service required!'],
+        required: [true, 'Author required!'],
+    },
+    category: {
+        type: String,
+        required: [true, 'Category required!'],
+    },
+    description: {
+        type: String,
+        required: [true, 'Description required!'],
     },
     createdAt: {
         type: Date,
