@@ -13,10 +13,16 @@ getClient().then(onfulfilled => {
 module.exports = {
 
     async read(request, response) {
-        const service = await Service.findById(request.params.id);
-        return response.json(service);
+        try {
+            let service = await Service.findOne({_id: request.params.id});
+            if (!service) {
+                return response.status(404).json({error: 'Esse serviço não foi cadastrado!'});
+            }
+            return response.json(service);
+        } catch(error) {
+            console.log(error);
+        }
     },
-
     async create(request, response) {
         try {
             const service = new Service(request.body);
@@ -30,6 +36,9 @@ module.exports = {
     async update(request, response) {
         try {
             const service = await Service.findByIdAndUpdate(request.params.id, request.body, { new: true });
+            if (!service) {
+                return response.status(404).json({error: 'Esse serviço não foi cadastrado!'});
+            }
             await service.save();
             return response.json(`Service ${service.name} updated!`);
         } catch (error) {
@@ -37,7 +46,16 @@ module.exports = {
         }
     },
     async delete(request, response){
-        const service = await Service.findByIdAndDelete(request.params.id);
+        try {
+            const service = await Service.findByIdAndDelete(request.params.id, request.body, { new: true });
+            if (!service) {
+                return response.status(404).json({error: 'Esse serviço não foi cadastrado!'});
+            }
+            await service.save();
+            return response.json(`Service ${service.name} updated!`);
+        } catch (error) {
+            console.log(error);
+        }
         return response.json('Service deleted!');
     }
 }
