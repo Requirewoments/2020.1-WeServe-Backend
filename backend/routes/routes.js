@@ -5,8 +5,8 @@ const ServiceController = require('../src/controllers/ServiceController');
 const routes = Router();
 
 routes.get('/', UserController.firstMessage);
-routes.get('/user/:id', UserController.read);
 routes.post('/user', UserController.create);
+routes.get('/user/:id', UserController.read);
 routes.put('/user/:id', UserController.update);
 routes.delete('/user/:id', UserController.delete);
 

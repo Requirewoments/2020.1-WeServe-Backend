@@ -13,8 +13,8 @@ app.use(bodyParser.urlencoded({extended: false}));
 
 app.use(express.json());
 app.use(cors());
-app.use(servicesRoutes);
 app.use(usersRoutes);
+app.use(servicesRoutes);
 
 const main = async () => {
     const uri = 'mongodb%2Bsrv%3A%2F%2Fmaiconmares%3Aqnpjeposf4580%40cluster0.pr5dc.mongodb.net%2FWeServe%3FretryWrites%3Dtrue%26w%3Dmajority';
