@@ -35,7 +35,8 @@ module.exports = {
         try {
             const service = new Service(request.body);
             await service.save();
-            return response.send(`${service}`);
+            let serviceJSON = JSON.stringify(service)
+            return response.send(`${serviceJSON}`);
         } catch (error) {
             console.log(error);
         }    
