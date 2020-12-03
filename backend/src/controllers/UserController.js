@@ -14,16 +14,18 @@ module.exports = {
     firstMessage(request, response) {
         return response.json('You are welcome!');
     },
+
     async read(request, response) {
         const user = await User.findById(request.params.id);
         return response.json(user);
     },
+
     async create(request, response) {
         const {email} = request.body;
         
         try {
             if (await User.findOne({ email })){
-                return response.status(400).json({error: "User already exists"});
+                return response.status(400).json({ error: "User email already on use" });
             }
 
             const user = new User(request.body);
@@ -34,6 +36,7 @@ module.exports = {
             console.log(error);
         }
     },
+
     async update(request, response) {
         try {
             const user = await User.findByIdAndUpdate(request.params.id, request.body, { new: true });
@@ -43,8 +46,10 @@ module.exports = {
             console.log(error);
         }
     },
+
     async delete(request, response){
         const user = await User.findByIdAndDelete(request.params.id);
         return response.json('User deleted!');
     }
+
 }
