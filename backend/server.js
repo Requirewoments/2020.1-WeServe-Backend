@@ -3,8 +3,8 @@ const cors = require('cors');
 const mongoose = require('mongoose');
 const bodyParser = require('body-parser');
 const {MongoClient} = require('mongodb');
-const usersRoutes = require('./routes/users');
-const servicesRoutes = require('./routes/services');
+const usersRoutes = require('./routes/routes');
+const servicesRoutes = require('./routes/routes');
 
 const app = express();
 
