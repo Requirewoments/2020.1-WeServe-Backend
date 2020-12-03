@@ -29,4 +29,4 @@ const ServiceSchema = new mongoose.Schema({
     }
 });
 
-mongoose.model('Service', ServiceSchema, 'service');
+mongoose.model('Service', ServiceSchema, 'services');

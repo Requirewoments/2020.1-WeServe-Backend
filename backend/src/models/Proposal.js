@@ -9,9 +9,9 @@ const ProposalSchema = new mongoose.Schema({
         type: String,
         required: [true, 'É obrigatório ao menos um contato para futuras negociações!']
     },
-    announcement: {
+    service: {
         type: mongoose.Schema.Types.ObjectId,
-        ref: 'WorkNeed',
+        ref: 'Service',
         required: true,
     },
     user: {
