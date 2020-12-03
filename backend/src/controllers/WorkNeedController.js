@@ -8,6 +8,18 @@ module.exports = {
     firstMessage(request, response) {
         return response.json('Bienvenue!');
     },
+    async readAll(request, response) {
+        const works = await WorkNeed.find();
+        
+        try {
+            if (await !works) {
+                return response.json('Nenhuma necessidade ainda foi cadastrada!');
+            }
+            return response.json(works);
+        } catch(error) {
+            console.log(error);
+        }
+    },
     async read(request, response) {
         const user = request.params.email;
     
