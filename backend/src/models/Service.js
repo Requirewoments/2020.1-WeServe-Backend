@@ -4,19 +4,24 @@ const ServiceSchema = new mongoose.Schema({
     
     title: {
         type: String,
-        required: [true, 'Title required!'],
+        required: [true, 'Título necessário!'],
     },
     author: {
         type: String,
-        required: [true, 'Author required!'],
+        ref: 'User',
+        required: [true, 'É necessário um autor!'],
     },
     category: {
         type: String,
-        required: [true, 'Category required!'],
+        required: [true, 'Categoria necessária!'],
     },
     description: {
         type: String,
-        required: [true, 'Description required!'],
+        required: [true, 'Descrição necessária!'],
+    },
+    contacts: {
+        type: String,
+        required: [true, 'É necessário adicionar ao menos um contato']
     },
     createdAt: {
         type: Date,
@@ -24,4 +29,4 @@ const ServiceSchema = new mongoose.Schema({
     }
 });
 
-mongoose.model('Service', ServiceSchema);
+mongoose.model('Service', ServiceSchema, 'service');
