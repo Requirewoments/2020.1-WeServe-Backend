@@ -23,6 +23,14 @@ module.exports = {
             console.log(error);
         }
     },
+    async index(request, response) {
+        try {
+            let services = await Service.find();
+            return response.json(services);
+        } catch(error) {
+            console.log(error);
+        }
+    },
     async create(request, response) {
         try {
             const service = new Service(request.body);

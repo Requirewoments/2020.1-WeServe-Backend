@@ -6,6 +6,7 @@ const routes = Router();
 
 routes.post('/service', ServiceController.create);
 routes.get('/service/:id', ServiceController.read);
+routes.get('/service/', ServiceController.index);
 routes.put('/service/:id', ServiceController.update);
 routes.delete('/service/:id', ServiceController.delete);
 
