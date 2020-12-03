@@ -11,8 +11,9 @@ routes.get('/user/:id', UserController.read);
 routes.put('/user/:id', UserController.update);
 routes.delete('/user/:id', UserController.delete);
 
-routes.post('/service', ServiceController.create);
 routes.get('/service/:id', ServiceController.read);
+routes.get('/service/', ServiceController.index);
+routes.post('/service', ServiceController.create);
 routes.put('/service/:id', ServiceController.update);
 routes.delete('/service/:id', ServiceController.delete);
 

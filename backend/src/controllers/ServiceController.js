@@ -3,6 +3,7 @@ const {getClient} = require('./../utils/getClient');
 const mongoose = require('mongoose');
 requireDir('./../models');
 const Service = mongoose.model('Service');
+const User = mongoose.model('User');
 let client, db;
 
 getClient().then(onfulfilled => { 
@@ -23,12 +24,25 @@ module.exports = {
             console.log(error);
         }
     },
-    
-    async create(request, response) {
+    async index(request, response) {
         try {
+            let services = await Service.find();
+            return response.json(services);
+        } catch(error) {
+            console.log(error);
+        }
+    },
+    async create(request, response) {
+        const {author} = request.body;
+        const email = await User.findOne({email: author});
+        try {
+            if (await !email) {
+                return response.status(404).json('Esse autor não existe!');
+            }
             const service = new Service(request.body);
             await service.save();
-            return response.send(`${service}`);
+            let serviceJSON = JSON.stringify(service)
+            return response.send(`${serviceJSON}`);
         } catch (error) {
             console.log(error);
         }    
