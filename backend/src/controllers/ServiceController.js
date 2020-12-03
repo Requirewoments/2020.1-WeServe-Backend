@@ -23,6 +23,7 @@ module.exports = {
             console.log(error);
         }
     },
+    
     async create(request, response) {
         try {
             const service = new Service(request.body);
@@ -45,17 +46,9 @@ module.exports = {
             console.log(error);
         }
     },
+
     async delete(request, response){
-        try {
-            const service = await Service.findByIdAndDelete(request.params.id, request.body, { new: true });
-            if (!service) {
-                return response.status(404).json({error: 'Esse serviço não foi cadastrado!'});
-            }
-            await service.save();
-            return response.json(`Service ${service.name} updated!`);
-        } catch (error) {
-            console.log(error);
-        }
+        const service = await Service.findByIdAndDelete(request.params.id);
         return response.json('Service deleted!');
     }
 }
