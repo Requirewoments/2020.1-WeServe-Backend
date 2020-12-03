@@ -23,7 +23,6 @@ module.exports = {
             console.log(error);
         }
     },
-<<<<<<< HEAD
     async index(request, response) {
         try {
             let services = await Service.find();
@@ -32,9 +31,6 @@ module.exports = {
             console.log(error);
         }
     },
-=======
-    
->>>>>>> a99184c5ba87a6f8bc83c67e6985abdb5d066c91
     async create(request, response) {
         try {
             const service = new Service(request.body);
