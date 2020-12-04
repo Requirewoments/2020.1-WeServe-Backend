@@ -10,6 +10,8 @@ routes.post('/user', UserController.create);
 routes.get('/user/:id', UserController.read);
 routes.put('/user/:id', UserController.update);
 routes.delete('/user/:id', UserController.delete);
+routes.post('/user/auth', UserController.authenticate);
+
 
 routes.get('/service/:id', ServiceController.read);
 routes.get('/service/', ServiceController.index);
